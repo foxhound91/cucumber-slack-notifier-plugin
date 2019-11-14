@@ -85,7 +85,7 @@ public class CucumberResult {
         s.append(", Build: <");
         s.append(getJenkinsHyperlink(jenkinsUrl, jobName, buildNumber));
         s.append("cucumber-html-reports/|");
-        s.append(buildNumber);
+        s.append(buildNumber + " - " + jobName);
         s.append(">");
         return s.toString();
     }
@@ -111,15 +111,15 @@ public class CucumberResult {
         return fields;
     }
 
-    private void generateFeaturesFields(JsonArray fields, String hyperLink){
+    private void generateFeaturesFields(JsonArray fields, String hyperLink) {
         int counter = 0;
         for (FeatureResult feature : getFeatureResults()) {
             final String featureDisplayName = feature.getDisplayName();
             final String featureFileUri = feature.getUri();
 
-            if (counter == 0){
+            if (counter == 0) {
                 fields.add(shortObject("<" + hyperLink + "report-feature_" + toValidFileName(featureFileUri) + ".html|" + featureDisplayName + ">"));
-            }else{
+            } else {
                 fields.add(shortObject("<" + hyperLink + "report-feature_" + counter + "_" + toValidFileName(featureFileUri) + ".html|" + featureDisplayName + ">"));
             }
 

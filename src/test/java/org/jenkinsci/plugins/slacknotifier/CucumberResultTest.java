@@ -15,7 +15,7 @@ public class CucumberResultTest {
         assertNotNull(header);
         assertTrue(header.contains("Features: 1"));
         assertTrue(header.contains("Scenarios: 1"));
-        assertTrue(header.contains("Build: <http://localhost:8080/job/test-job/1/cucumber-html-reports/|1>"));
+        assertTrue(header.contains("Build: <http://localhost:8080/job/test-job/1/cucumber-html-reports/|1 - test-job>"));
     }
 
     @Test
@@ -25,7 +25,7 @@ public class CucumberResultTest {
         assertTrue(header.contains("Extra Content"));
         assertTrue(header.contains("Features: 1"));
         assertTrue(header.contains("Scenarios: 1"));
-        assertTrue(header.contains("Build: <http://localhost:8080/job/test-job/1/cucumber-html-reports/|1>"));
+        assertTrue(header.contains("Build: <http://localhost:8080/job/test-job/1/cucumber-html-reports/|1 - test-job>"));
     }
 
     private CucumberResult successfulResult() {
