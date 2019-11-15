@@ -57,9 +57,6 @@ public class CucumberSlackPostBuildNotifier extends Recorder {
             return true;
         }
 
-        // TODO Remove this line
-        LOG.info("hideSuccessfulResults = ***" + hideSuccessfulResults + "***");
-
         CucumberSlackService service = new CucumberSlackService(webhookUrl);
         service.sendCucumberReportToSlack(build, build.getWorkspace(), json, channel, null, hideSuccessfulResults);
 
