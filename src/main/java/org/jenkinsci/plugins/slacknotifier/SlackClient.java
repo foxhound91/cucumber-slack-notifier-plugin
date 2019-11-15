@@ -39,19 +39,18 @@ public class SlackClient {
     }
 
     private CucumberResult dummyResults() {
-        return new CucumberResult(Collections.singletonList(new FeatureResult("Dummy Test","Dummy Test", 100)), 1, 100);
+        return new CucumberResult(Collections.singletonList(new FeatureResult("Dummy Test", "Dummy Test", 100)), 1, 100);
     }
-
 
     private void postToSlack(String json) {
         LOG.fine("Json being posted: " + json);
         StringRequestEntity requestEntity = getStringRequestEntity(json);
         PostMethod postMethod = new PostMethod(channelWebhookUrl);
         postMethod.setRequestEntity(requestEntity);
-        postToSlack(postMethod);
+        executeHttpPost(postMethod);
     }
 
-    private void postToSlack(PostMethod postMethod) {
+    private void executeHttpPost(PostMethod postMethod) {
         HttpClient http = new HttpClient();
         try {
             int status = http.executeMethod(postMethod);
@@ -77,7 +76,7 @@ public class SlackClient {
             for (JsonElement scenarioElement : elements) {
                 JsonObject scenario = scenarioElement.getAsJsonObject();
                 JsonArray steps = scenario.get("steps").getAsJsonArray();
-                if (scenario.get("type").getAsString().equalsIgnoreCase("scenario")){
+                if (scenario.get("type").getAsString().equalsIgnoreCase("scenario")) {
                     scenariosTotal = scenariosTotal + 1;
                 }
                 for (JsonElement stepElement : steps) {
